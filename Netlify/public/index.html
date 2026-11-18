@@ -68,6 +68,7 @@
     .instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
     .x { background: #000; }
     .facebook { background: #1877f2; }
+    .website { background: var(--green); }
 
     footer { background: var(--green-dark); color: #d8e6e1; padding: 30px 0; text-align: center; }
     .footer-icons { display: flex; justify-content: center; gap: 14px; margin-bottom: 12px; }
@@ -110,10 +111,11 @@
   <section style="padding-top:0">
     <div class="wrap">
       <h2>الجنسيات المتاحة</h2>
-      <p class="sub">وغيرها من الجنسيات حسب الطلب</p>
+      <p class="sub">التوفر يختلف حسب الجنسية والمهنة</p>
       <div class="chips">
-        <span class="chip">الهند</span><span class="chip">بنجلاديش</span><span class="chip">إثيوبيا</span><span class="chip">كينيا</span><span class="chip">بوروندي</span><span class="chip">الفلبين</span><span class="chip">سيريلانكا</span>
+        <span class="chip">الفلبين</span><span class="chip">إندونيسيا</span><span class="chip">الهند</span><span class="chip">بنجلاديش</span><span class="chip">إثيوبيا</span><span class="chip">كينيا</span><span class="chip">أوغندا</span><span class="chip">السودان</span><span class="chip">سريلانكا</span><span class="chip">نيبال</span>
       </div>
+      <div class="cta"><a class="btn btn-gold" href="https://www.saaed-sa.com/countries" target="_blank" rel="noopener"><i class="fa-solid fa-earth-africa"></i> تفاصيل الدول على موقعنا</a></div>
     </div>
   </section>
 
@@ -128,6 +130,7 @@
   <footer>
     <div class="wrap">
       <div class="footer-icons" id="footer-icons"></div>
+      <p><i class="fa-solid fa-location-dot"></i> الرس، حي الحزم، شارع الجريف 58884 — <a href="tel:+966594175122" dir="ltr">0594175122</a></p>
       <p>© <span id="year"></span> شركة ساعد للاستقدام — جميع الحقوق محفوظة</p>
     </div>
   </footer>
@@ -146,6 +149,7 @@
       tiktok:    "s_ltan_0",
       instagram: "",   // مثال: "saed_recruit"
       x:         "",   // مثال: "saed_recruit"
+      website:   "www.saaed-sa.com",
       facebook:  "",   // مثال: "saedrecruit"
     };
 
@@ -156,6 +160,7 @@
       instagram: { name: "إنستغرام", icon: "fa-instagram",   url: v => `https://www.instagram.com/${v}`,   label: v => "@" + v },
       x:         { name: "إكس",      icon: "fa-x-twitter",   url: v => `https://x.com/${v}`,               label: v => "@" + v },
       facebook:  { name: "فيسبوك",   icon: "fa-facebook-f",  url: v => `https://www.facebook.com/${v}`,    label: v => v },
+      website:   { name: "موقعنا الإلكتروني", icon: "fa-globe", solid: true, url: v => `https://${v}`, label: v => v.replace(/^www\./, "") },
     };
 
     const clean = v => String(v || "").trim().replace(/^@/, "").replace(/[^\w.\-]/g, "");
@@ -168,10 +173,10 @@
       const href = p.url(v);
       grid.insertAdjacentHTML("beforeend",
         `<a class="social-link ${key}" href="${href}" target="_blank" rel="noopener">
-           <i class="fa-brands ${p.icon}"></i><span>${p.name}</span><small>${p.label(v)}</small>
+           <i class="${p.solid ? "fa-solid" : "fa-brands"} ${p.icon}"></i><span>${p.name}</span><small>${p.label(v)}</small>
          </a>`);
       footer.insertAdjacentHTML("beforeend",
-        `<a href="${href}" target="_blank" rel="noopener" aria-label="${p.name}"><i class="fa-brands ${p.icon}"></i></a>`);
+        `<a href="${href}" target="_blank" rel="noopener" aria-label="${p.name}"><i class="${p.solid ? "fa-solid" : "fa-brands"} ${p.icon}"></i></a>`);
     }
 
     if (!grid.children.length) {
